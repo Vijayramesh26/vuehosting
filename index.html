@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vue + Firebase Hosting Tutorial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #f8fafc, #e0f2fe);
+      padding: 2rem;
+      color: #1f2937;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      color: #0f172a;
+      opacity: 0;
+      transform: translateY(-40px);
+      transition: all 1s ease;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    .card.show, h1.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      color: #2563eb;
+      margin-bottom: 0.8rem;
+    }
+
+    .card pre {
+      background-color: #0f172a;
+      color: #f1f5f9;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .card ol, .card ul {
+      margin-left: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 1rem;
+      color: #64748b;
+      margin-top: 2rem;
+    }
+
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 id="title">🚀 Host Vue.js on Firebase</h1>
+
+    <div class="card"> <h2>1. Create Vue Project</h2> <pre><code>vue create &lt;ProjectName&gt;</code></pre> </div>
+    <div class="card"> <h2>2. Build the Project</h2> <pre><code>npm run build</code></pre> </div>
+    <div class="card"> <h2>3. Create Firebase Project</h2>
+      <ol>
+        <li>Open <a href="https://console.firebase.google.com" target="_blank">Firebase Console</a></li>
+        <li>Login to your Google account</li>
+        <li>Click <strong>Add Project</strong></li>
+        <li>Name it, then click <strong>Continue</strong> → <strong>Create Project</strong></li>
+      </ol>
+    </div>
+    <div class="card"> <h2>4. Navigate to Vue Project</h2> <p>Make sure you're in your project folder before continuing.</p> </div>
+    <div class="card"> <h2>5. Install Firebase Tools</h2> <pre><code>sudo npm install -g firebase-tools</code></pre> </div>
+    <div class="card"> <h2>6. Login to Firebase</h2> <pre><code>firebase login</code></pre> <p>Authenticate in the browser window that opens.</p> </div>
+    <div class="card">
+      <h2>7. Initialize Hosting</h2>
+      <pre><code>firebase init hosting</code></pre>
+      <ul>
+        <li>Select an existing or new project</li>
+        <li>Set public directory to <code>dist</code></li>
+        <li>Configure SPA: <strong>No</strong></li>
+        <li>Automatic build: <strong>No</strong></li>
+        <li>Overwrite index.html: <strong>No</strong></li>
+      </ul>
+    </div>
+    <div class="card"> <h2>8. Deploy</h2> <pre><code>firebase deploy --only hosting</code></pre> </div>
+    <div class="card"> <h2>9. Done 🎉</h2> <p>Your app is now live at:</p> <pre><code>https://&lt;your-project&gt;.web.app</code></pre> </div>
+
+    <div class="footer">Built with ❤️ by VIJAY RAMESH</div>
+  </div>
+
+  <script>
+    // Show header after slight delay
+    window.addEventListener('load', () => {
+      document.getElementById('title').classList.add('show');
+    });
+
+    // Scroll reveal logic
+    const cards = document.querySelectorAll('.card');
+
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < triggerBottom) {
+          card.classList.add('show');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+</body>
+</html>
